@@ -4,7 +4,9 @@
   "description": "This is a backend MongoDB database created for a Social Networking API.  This includes personalize of a friends list.  Sharing thoughts and comments with one another.  And allows any adjustments to be made by the user.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index",
+    "seed": "node utils/seed"
   },
   "dependencies": {
     "express": "^4.17.1",
