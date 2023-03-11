@@ -9,7 +9,7 @@ module.exports = {
   },
   // find one User by id
   getSingleUser(req, res){
-    User.findOne({ _id: req.params.userId })
+    User.findOne({ _id: req.params.userID })
       .then(userRecord => {
         if(!userRecord){
           return res.status(404).send({ message: 'User Id Not Found' })
