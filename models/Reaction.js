@@ -14,8 +14,9 @@ const reactionSchema = new Schema(
         },  
         text: {
             type: String,
+            min: [1, 'Must include at least 1 character'],
+            max: [280, 'Sorry, only 280 characters allowed.'],
             required: true,
-            maxlength: 250,
         },  
         createdAt: {
             type: Date,
@@ -31,6 +32,5 @@ const reactionSchema = new Schema(
     }
   );
 
-  const Reaction = model('reaction', reactionSchema);
 
-  module.exports = Reaction;
+  module.exports = reactionSchema;

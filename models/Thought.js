@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const Reaction = require('./Reaction');
+const reactionSchema = require('./Reaction');
 const formatDate = require('../utils/formatDate');
 
 // Schema to create Post model
@@ -11,7 +11,8 @@ const thoughtSchema = new Schema(
         },
         text: {
             type: String,
-            maxLength: 250,
+            min: [1, 'Must include at least 1 character'],
+            max: [280, 'Sorry, only 280 characters allowed.'],
             required: true,
         },
         createdAt: {
@@ -19,7 +20,7 @@ const thoughtSchema = new Schema(
             default: Date.now,
             // get: standardDate => formatDate(standardDate)
         },
-        reactions: [ Reaction ],
+        reactions: [ reactionSchema ],
     },
     {
         toJSON: {

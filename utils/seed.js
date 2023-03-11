@@ -1,6 +1,6 @@
 const connection = require('../config/connection');
-const User = require('../models/User');
-const { getRandomName } = require('./data');
+const { User, Thought } = require('../models');
+const { userData, thoughtData } = require('./data');
 
 // Start the seeding runtime timer
 console.time('seeding');
@@ -10,23 +10,15 @@ connection.once('open', async () => {
   // Delete the entries in the collection
   await User.deleteMany({});
 
-  // Empty arrays for randomly generated users
-  const users = [];
-
-  for (let i = 0; i < 10; i++) {
-    const name = getRandomName();
-    const newUser = {
-      first: name.split(' ')[0],
-      last: name.split(' ')[1],
-      age: Math.floor(Math.random() * 99 + 1),
-    };
-    users.push(newUser);
-  }
+  // create users with data file
+  const seedUsers = [...userData];
+  const seedThoughts = [...thoughtData];
 
   // Wait for the users to be inserted into the database
-  await User.collection.insertMany(users);
+  await User.collection.insertMany(seedUsers);
+  await Thought.collection.insertMany(seedThoughts)
 
-  console.table(users);
+  console.table(seedUsers, seedThoughts);
   console.timeEnd('seeding complete 🌱');
   process.exit(0);
 });

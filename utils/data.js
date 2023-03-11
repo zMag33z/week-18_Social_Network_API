@@ -1,80 +1,40 @@
-const names = [
-  'Aaran',
-  'Aaren',
-  'Aarez',
-  'Aarman',
-  'Aaron',
-  'Aaron-James',
-  'Aarron',
-  'Aaryan',
-  'Aaryn',
-  'Aayan',
-  'Aazaan',
-  'Abaan',
-  'Abbas',
-  'Abdallah',
-  'Abdalroof',
-  'Abdihakim',
-  'Abdirahman',
-  'Abdisalam',
-  'Abdul',
-  'Abdul-Aziz',
-  'Abdulbasir',
-  'Abdulkadir',
-  'Abdulkarem',
-  'Smith',
-  'Jones',
-  'Coollastname',
-  'enter_name_here',
-  'Ze',
-  'Zechariah',
-  'Zeek',
-  'Zeeshan',
-  'Zeid',
-  'Zein',
-  'Zen',
-  'Zendel',
-  'Zenith',
-  'Zennon',
-  'Zeph',
-  'Zerah',
-  'Zhen',
-  'Zhi',
-  'Zhong',
-  'Zhuo',
-  'Zi',
-  'Zidane',
-  'Zijie',
-  'Zinedine',
-  'Zion',
-  'Zishan',
-  'Ziya',
-  'Ziyaan',
-  'Zohaib',
-  'Zohair',
-  'Zoubaeir',
-  'Zubair',
-  'Zubayr',
-  'Zuriel',
-  'Xander',
-  'Jared',
-  'Courtney',
-  'Gillian',
-  'Clark',
-  'Jared',
-  'Grace',
-  'Kelsey',
-  'Tamar',
-  'Alex',
-  'Mark',
-  'Tamar',
-  'Farish',
-  'Sarah',
-  'Nathaniel',
-  'Parker',
+const usernames = [
+  'shakydaffy',
+  'traitflow',
+  'bassmeatball',
+  'huggingstress',
+  'lazygenetic',
+  'educatorchild',
+  'undertakerspecies',
+  'veganshore',
+  'bicyclistnegotiate',
+  'perkybathtub',
+  'linkcaroling',
+  'sphericalpassel',
+  'metalplenty',
+  'goodscented'
 ];
 
-const comments = [
+
+const emails = [
+  'shakydaffy@hobbist.com',
+  'traitflow@gilder.net',
+  'bassmeatball@metalink.net',
+  'huggingstress@gmail.com',
+  'lazygenetic@gilder.net',
+  'educatorchild@yahoo.com',
+  'undertakerspecies@metalink.net',
+  'veganshore@metalink.net',
+  'bicyclistnegotiate@hobbist.com',
+  'perkybathtub@aol.com',
+  'linkcaroling@gilder.net',
+  'sphericalpassel@gmail.com',
+  'metalplenty@hobbist.com',
+  'goodscented@metalink.net'
+];
+
+
+const thoughts = [
   'Decision Trackers are awesome',
   'Find My Phone is a useful app',
   'Learn Piano is not very good for learning Piano',
@@ -87,56 +47,63 @@ const comments = [
   'Notes is my most used app',
   'Messages is open on my computer 24/7',
   'Email is open on my computer',
-  'Compass is never opened',
+  'Man my brain is overwhelmed.', 
   'Firefox is great for privacy',
 ];
 
-const lorum = [
-  'lorem',
-  'imsum',
-  'dolor',
-  'sit',
-  'amet',
-  'consectetur',
-  'adipiscing',
-  'elit',
-  'curabitur',
-  'vel',
-  'hendrerit',
-  'libero',
-  'eleifend',
-  'blandit',
-  'nunc',
-  'ornare',
-  'odio',
-  'ut',
-  'orci',
-  'gravida',
-  'imperdiet',
-  'nullam',
-  'purus',
-  'lacinia',
-  'a',
-  'pretium',
-  'quis',
+const reactions = [
+  'WHAT?  Decision maker is what i need about now.',
+  `gps sometimes doesn't work on my phone :(.  Guess i should move out of this metal box.`,
+  `most things that are made for something specific don't work`,
+  `i prefer free roaming games personally, but i might try it out.`,
+  `never heard of it,`
+  `wish i had money to compare.`,
+  `yeah sometimes they give too much away right before the movie`,
+  `most found coding comment ever`,
+  `for some it isn't a waste of time but rather gives other time to do something`,
+  `hahah i'm stuck on instagram`,
+  `messages are open or the app message is open.  i'm lost`,
+  `well then close it.`,
+  `same here.  dunno know if i'm coming or going.`,
+  `dun't know about that.  sure there are more secure options out there.`,
 ];
 
-const genRandomIndex = (arr) => Math.floor(Math.random() * arr.length);
-
-// Get a random item given an array
-const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
-
-// Gets a random full name
-const getRandomName = () =>
-  `${getRandomArrItem(names)} ${getRandomArrItem(names)}`;
-
-const getRandomUserName = () =>
-  `${getRandomArrItem(names)}${Math.floor(Math.random() * 10 + 1)}`;
-
-// Export the functions for use in seed.js
-module.exports = {
-  getRandomName,
-  getRandomUserName,
-  genRandomIndex,
+const myrandomFriends = (notmany)=> {
+  const newFriends = [];
+  for(let i = 0; i < notmany; i++){
+    newFriends.push([Math.floor(Math.random() * usernames.length)]);
+  }
+  return newFriends;
 };
+
+const userData = () => {
+  const newUser = [];
+  for(let i = 0; i < usernames.length; i++){
+    newUser.push(
+      {
+        username: usernames[i],
+        email: emails[i],
+        friendList: [...myrandomFriends(3)],
+      }
+    );
+  }
+  return orientedData;
+};
+
+const thoughtData = () => {
+  const newThought = [];
+  for(let i = 0; i < thoughts.length; i ++){
+    newThought.push(
+      {
+        username: usernames[i],
+        text: thoughts[i],
+        reactions: [reactions[i]],
+      }
+    );
+  }
+  return newThought;
+}
+
+// Export object functions to seed.js
+module.exports = { userData, thoughtData };
   
