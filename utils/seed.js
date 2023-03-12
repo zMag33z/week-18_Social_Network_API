@@ -9,17 +9,24 @@ console.time('seeding');
 connection.once('open', async () => {
   // Delete previous entries in the collection
   await User.deleteMany({});
+  await Thought.deleteMany({});
 
-  // create users with data file
   const seedUsers = userData();
-  // const seedThoughts = [...thoughtData];
+  const createdUsers = User.collection.insertMany(seedUsers);
+  await createdUsers;
 
-  // Wait for the users to be inserted into the database
-  await User.collection.insertMany(seedUsers);
-
-//  // await //Thought.//collection.//insertMany//(seedThoughts);
+  
+  const seedThoughts = thoughtData();
+  const createdThoughts = Thought.collection.insertMany(seedThoughts);
+  await createdThoughts;
 
   console.table(seedUsers);
+  console.table(seedThoughts);
+
+  // console.log(createdUsers);
+  // console.log(createdThoughts);
+
+  // end runtime timer
   console.timeEnd('seeding complete 🌱');
   process.exit(0);
 });

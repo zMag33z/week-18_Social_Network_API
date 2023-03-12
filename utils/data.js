@@ -97,18 +97,21 @@ const userData = () => {
   return [...userSeeds];
 };
 
+
 const thoughtData = () => {
   const newThought = [];
-  for(let i = 0; i < thoughts.length; i ++){
+  for(let i = 0, j = reactions.length - 1; i < reactions.length; i++, j--){
     newThought.push(
       {
         username: usernames[i],
-        text: thoughts[i]
+        text: thoughts[i],
+        reactions: { username: usernames[j], text: reactions[i]},
       }
     );
   }
+
   return newThought;
-}
+};
 
 // Export object functions to seed.js
 module.exports = { userData, thoughtData };

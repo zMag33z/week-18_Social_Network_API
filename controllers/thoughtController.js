@@ -72,16 +72,18 @@ module.exports = {
   addReaction(req, res){
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtID},
-      { $addToSet: { reactions: req.body } },
+      { $push: { reactions: req.body } },
       { runValidators: true, new: true },
       )
     .then(reactionRecord => {
+      console.log(reactionRecord);
       if(!reactionRecord){
         return res.status(404).json({ message: 'Thought ID Not Found'})
       };
       return res.json(reactionRecord);
     })
     .catch(err => {
+      console.log(err);
       res.status(400).json(err);
     });
   },  // remove reaction 
