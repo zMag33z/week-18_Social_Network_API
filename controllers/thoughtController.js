@@ -17,6 +17,7 @@ module.exports = {
         return res.json(singleThought);
       })
       .catch(err => {
+        console.log(err);
         res.status(400).json(err);
       });
   },

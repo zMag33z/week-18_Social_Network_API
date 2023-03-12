@@ -8,25 +8,19 @@ const userSchema = new Schema(
       unique: true,
       require: true,
       trim: true,
-    }
-  },
-  {
+    },  
     email: {
       type: String,
       unique: true,
       required: true,
-      match: [/.+@.+\..+/],
-    }
-  },
-  {
+      match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Please enter a valid email address"],
+    },  
     thoughts: [
       {
         type: Schema.Types.ObjectId,
         ref: 'thought',
       },
-    ],
-  },
-  {
+    ],  
     friendList: [
       {
         type: Schema.Types.ObjectId,
@@ -37,6 +31,7 @@ const userSchema = new Schema(
   {
     toJSON: {
       virtuals: true,
+      getters: true
     },
     id: false,
   }
@@ -44,7 +39,7 @@ const userSchema = new Schema(
 
 // Create friend count to add to object as an additional column.
 userSchema.virtual("friendCount").get(function () {
-  return this.friends.length;
+  return this.friendList.length;
 });
 
 // Initialize our User model

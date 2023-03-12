@@ -56,7 +56,7 @@ const reactions = [
   `gps sometimes doesn't work on my phone :(.  Guess i should move out of this metal box.`,
   `most things that are made for something specific don't work`,
   `i prefer free roaming games personally, but i might try it out.`,
-  `never heard of it,`
+  `never heard of it,`,
   `wish i had money to compare.`,
   `yeah sometimes they give too much away right before the movie`,
   `most found coding comment ever`,
@@ -68,26 +68,33 @@ const reactions = [
   `dun't know about that.  sure there are more secure options out there.`,
 ];
 
-const myrandomFriends = (notmany)=> {
+const myrandomFriends = (notmany, thisUser)=> {
   const newFriends = [];
   for(let i = 0; i < notmany; i++){
-    newFriends.push([Math.floor(Math.random() * usernames.length)]);
+    const thisFriend = usernames[Math.floor(Math.random() * usernames.length)];
+    let previousFriend;
+    if(thisUser === thisFriend){
+      previousFriend = thisFriend;
+    }else{
+    newFriends.push(thisFriend);
+    }
   }
   return newFriends;
 };
 
 const userData = () => {
-  const newUser = [];
+  const userSeeds = [];
   for(let i = 0; i < usernames.length; i++){
-    newUser.push(
+    const thisUser = usernames[i];
+    userSeeds.push(
       {
-        username: usernames[i],
+        username: thisUser,
         email: emails[i],
-        friendList: [...myrandomFriends(3)],
+        // friendList: myrandomFriends(2, thisUser),
       }
     );
   }
-  return orientedData;
+  return [...userSeeds];
 };
 
 const thoughtData = () => {

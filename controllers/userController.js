@@ -1,4 +1,4 @@
-const User = require('../models');
+const { User } = require('../models');
 
 module.exports = {
   // retrieve all user in database
@@ -23,13 +23,18 @@ module.exports = {
   // create a new user
   createUser(req, res){
     User.create(req.body)
-      .then(newUserData => res.json(newUserData))
+      .then(newUserData => {console.log(req.body, newUserData); res.json(newUserData)})
       .catch((err) => res.status(500).json(err));
   },
   // update existing 
   updateUser(req, res){
-    User.findOneAndUpdate({ _id: req.params.userID}, req.body, { runValidators: true, new: true })
+    User.findOneAndUpdate(
+      { _id: req.params.userID },
+      { $set: req.body },
+      { runValidators: true, new: true }
+      )
       .then(userRecord => {
+        console.log(req.body, userRecord);
         if(!userRecord){
           return res.status(404).send({ message: 'User Id Not Found' })
         };
