@@ -17,22 +17,23 @@ module.exports = {
         return res.json(singleThought);
       })
       .catch(err => {
-        console.log(err);
         res.status(400).json(err);
       });
   },
   // create a new thought connected to user
   createThought(req, res){
+    console.log('create', req.body);
     Thought.create(req.body)
-      .then(req => {
+      .then(creatorID => {
+        console.log('then', creatorID);
         return User.findOneAndUpdate(
-            { _id: req.params.userID },
-            { $push: { thoughts: _id } },
+            { _id: req.body.userID },
+            { $push: { thoughts: creatorID._id } },
             { runValidators: true, new: true },
         )
     })
       .then(newUserData => res.json(newUserData))
-      .catch((err) => res.status(500).json(err));
+      .catch((err) => {console.log(err);res.status(500).json(err)});
   },
   // update existing 
   updateThought(req, res){
@@ -76,14 +77,14 @@ module.exports = {
       { runValidators: true, new: true },
       )
     .then(reactionRecord => {
-      console.log(reactionRecord);
+      // console.log(reactionRecord);
       if(!reactionRecord){
         return res.status(404).json({ message: 'Thought ID Not Found'})
       };
       return res.json(reactionRecord);
     })
     .catch(err => {
-      console.log(err);
+      // console.log(err);
       res.status(400).json(err);
     });
   },  // remove reaction 

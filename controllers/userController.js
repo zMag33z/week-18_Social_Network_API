@@ -23,7 +23,7 @@ module.exports = {
   // create a new user
   createUser(req, res){
     User.create(req.body)
-      .then(newUserData => {console.log(req.body, newUserData); res.json(newUserData)})
+      .then(newUserData => res.json(newUserData))
       .catch((err) => res.status(500).json(err));
   },
   // update existing 
@@ -34,7 +34,6 @@ module.exports = {
       { runValidators: true, new: true }
       )
       .then(userRecord => {
-        console.log(req.body, userRecord);
         if(!userRecord){
           return res.status(404).send({ message: 'User Id Not Found' })
         };
