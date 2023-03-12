@@ -103,8 +103,7 @@ const thoughtData = () => {
     newThought.push(
       {
         username: usernames[i],
-        text: thoughts[i],
-        reactions: [reactions[i]],
+        text: thoughts[i]
       }
     );
   }
