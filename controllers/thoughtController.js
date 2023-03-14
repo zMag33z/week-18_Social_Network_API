@@ -77,7 +77,19 @@ module.exports = {
   getReactions(req, res){
     Thought.findOne({ _id: req.params.thoughtID })
     .then(singleThought => {
-      console.log(singleThought.reactions);
+      console.log(singleThought);
+      if(!singleThought){
+        return res.status(404).send({ message: 'Thought Id Not Found' })
+      };
+      return res.json(singleThought.reactions);
+    })
+    .catch(err => {
+      res.status(400).json(err);
+    });
+  },
+  getSingleReaction(req, res){
+    Thought.findOne({ "reactions.reactionId": req.params.reactionID}, {"reactions.$": 1} )
+    .then(singleThought => {
       if(!singleThought){
         return res.status(404).send({ message: 'Thought Id Not Found' })
       };
@@ -93,11 +105,9 @@ module.exports = {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtID},
       { $addToSet: { reactions: req.body } },
-      // { reactions: req.body },
       { runValidators: true, new: true },
       )
     .then(reactionRecord => {
-
       if(!reactionRecord){
         return res.status(404).json({ message: 'Thought ID Not Found'})
       };
@@ -107,18 +117,18 @@ module.exports = {
       console.log(err);
       res.status(400).json(err);
     });
-  },
+  },  
   // remove reaction 
   deleteReaction(req, res){
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtID},
       { $pull: { reactions: { reactionId: req.params.reactionID } } },
       { runValidators: true, new: true })
-      .then(userRecord => {
-        if(!userRecord){
+      .then(thoughtRecord => {
+        if(!thoughtRecord){
           return res.status(404).json({ message: 'Thought ID Not Found'})
         };
-        return res.json(userRecord);
+        return res.json(thoughtRecord);
       })
       .catch(err => {
         res.status(400).json(err);

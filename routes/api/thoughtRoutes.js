@@ -27,6 +27,7 @@ const {
   .post(addReaction);
 
   router.route('/:thoughtID/reactions/:reactionID')
+  .get(getSingleReaction)
   .delete(deleteReaction);
   
 
