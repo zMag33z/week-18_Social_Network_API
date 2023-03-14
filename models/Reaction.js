@@ -4,13 +4,13 @@ const formatDate = require('../utils/formatDate');
 // Reactions to add to thoughts
 const ReactionSchema = new Schema(
     {
-        username: {
-            type: String,
-            required: true,
-        },
         reactionId: {
             type: Schema.Types.ObjectId,
             default: () => new Types.ObjectId(),
+        },
+        username: {
+            type: String,
+            required: true,
         },  
         text: {
             type: String,
@@ -31,7 +31,6 @@ const ReactionSchema = new Schema(
         id: false,
     }
   );
-
 
   
   module.exports = ReactionSchema;

@@ -24,11 +24,13 @@ module.exports = {
   createThought(req, res){
     Thought.create(req.body)
       .then(newThought => {
-        return User.findOneAndUpdate(
+        const response = User.findOneAndUpdate(
             { _id: req.body.userID },
-            { $push: { thoughts: newThought._id } },
+            { $addToSet: { thoughts: newThought._id } },
             { runValidators: true, new: true },
         );
+        console.log(response);
+        return response;
     })
       .then(newUserData => {
         res.json(newUserData);
@@ -70,25 +72,43 @@ module.exports = {
       .catch((err) => {
         res.status(500).json(err)
       });
-  },// add reaction
+  },
+  // all reactions
+  getReactions(req, res){
+    Thought.findOne({ _id: req.params.thoughtID })
+    .then(singleThought => {
+      console.log(singleThought.reactions);
+      if(!singleThought){
+        return res.status(404).send({ message: 'Thought Id Not Found' })
+      };
+      return res.json(singleThought.reactions);
+    })
+    .catch(err => {
+      res.status(400).json(err);
+    });
+  },
+  // add reaction
   addReaction(req, res){
+    console.log(req.params.thoughtID, req.body);
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtID},
-      { $push: { reactions: req.body } },
+      { $addToSet: { reactions: req.body } },
+      // { reactions: req.body },
       { runValidators: true, new: true },
       )
     .then(reactionRecord => {
-      // console.log(reactionRecord);
+
       if(!reactionRecord){
         return res.status(404).json({ message: 'Thought ID Not Found'})
       };
       return res.json(reactionRecord);
     })
     .catch(err => {
-      // console.log(err);
+      console.log(err);
       res.status(400).json(err);
     });
-  },  // remove reaction 
+  },
+  // remove reaction 
   deleteReaction(req, res){
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtID},
