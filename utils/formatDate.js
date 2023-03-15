@@ -1,4 +1,4 @@
-// DO NOT LIKE THIS REDUNDANT AS FUCK NEED CHANGE
+// THIS WAS OPTIONAL. I DON'T LIKE IT. IT IS UGLY
 // const addDateSuffix = (date) => {
 //     let dateStr = date.toString();
   

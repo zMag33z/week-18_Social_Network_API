@@ -1,6 +1,5 @@
 const { Schema, model } = require('mongoose');
 const ReactionSchema = require('./Reaction');
-const formatDate = require('../utils/formatDate');
 
 // Schema to create Post model
 const thoughtSchema = new Schema(
@@ -18,14 +17,12 @@ const thoughtSchema = new Schema(
         createdAt: {
             type: Date,
             default: Date.now,
-            // get: standardDate => formatDate(standardDate)
         },
         reactions: [ReactionSchema],
     },
     {
         toJSON: {
             virtuals: true,
-            // getters: true,
         },
         id: false,
     }

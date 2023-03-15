@@ -1,5 +1,4 @@
 const { Schema, Types } = require('mongoose');
-const formatDate = require('../utils/formatDate');
 
 // Reactions to add to thoughts
 const ReactionSchema = new Schema(
@@ -21,16 +20,15 @@ const ReactionSchema = new Schema(
         createdAt: {
             type: Date,
             default: Date.now,
-            // get: standardDate => formatDate(standardDate),
         },
     },
     {
         toJSON: {
-            // getters: true,
         },
+        _id: false,
         id: false,
     }
   );
 
-  
+  // Schema only
   module.exports = ReactionSchema;
