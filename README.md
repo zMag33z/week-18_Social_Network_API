@@ -1,6 +1,6 @@
 # week-18_Social_Network_API
 
-## This is a backend MongoDB database created for a Social Networking API.&nbsp;&nbsp;This includes personalize of a friends list.&nbsp;&nbsp;Sharing thoughts and comments with one another.&nbsp;&nbsp;And allows any adjustments to be made by the user.<br><br>
+## This is a backend MongoDB database created for a Social Networking API.&nbsp;&nbsp;This includes a personalized friends list.&nbsp;&nbsp;It allows sharing of thoughts and reactions to those thoughts with one another.&nbsp;&nbsp;It also allows any adjustments needed for correction to any data input by the user.<br><br>
 
 ### **Table of contents:**
 

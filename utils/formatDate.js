@@ -1,4 +1,10 @@
-// THIS WAS OPTIONAL. I DON'T LIKE IT. IT IS UGLY
+// THIS WAS OPTIONAL. I DON'T LIKE IT. NOTHING WRONG WITH IT.  IT IS JUST UGLY
+
+// Second paragraph of 'Module 18 Challenge' 
+/*you may also optionally 
+use a JavaScript date library of your choice 
+or the native JavaScript Date object to format timestamps.*/
+
 // const addDateSuffix = (date) => {
 //     let dateStr = date.toString();
   
