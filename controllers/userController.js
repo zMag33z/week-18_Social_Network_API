@@ -58,7 +58,6 @@ module.exports = {
   },
   // add to friends list
   addFriend(req, res){
-    console.log(req.params.userID, req.params.friendID);
     User.findOneAndUpdate(
       { _id: req.params.userID},
       { $addToSet: { friendList: req.params.friendID } },

@@ -68,7 +68,7 @@ Now press send.
 
 * In the object preview field you'll see that the output is an empty array.<br>
 *INS Output 1:*<br>
-![Insomnia screen 1](./assets/screen1.png)<br>
+![Insomnia screen 1](./assets/images/SNemptyUsers.png)<br>
 
 **Create New User**<br>
 At the address bar, select 'Post', leaving the path as **api/users**.<br>Enter *INS Object 2* below into the JSON field.<br>* This will create a new user within the database.
@@ -85,9 +85,9 @@ Now press send.
 
 * Returned within the preview field is the new user with other documents/tables/collections within it.<br>
 *INS Output 2:*<br>
-![Insomnia screen 2](./assets/screen2.png)
+![Insomnia screen 2](./assets/images/SNuser1.png)
 <br>
-### **Repeat the post process two to three more times, *changing* the '*username*' and '*email address*'.**
+### **Repeat the ***POST*** process two to three more times, *changing* the '*username*' and '*email address*'.**
 <br>
 
 **View All Newly Created Users**<br>
@@ -95,7 +95,7 @@ At the address bar, select 'GET', leaving the path as **api/users**.  Now press 
 
 * Returned within the preview field is now all users previously created within the database.<br>
 *INS Output 2:*<br>
-![Insomnia screen 2](./assets/screen2.png)
+![Insomnia screen 2](./assets/images/SNusers.png)
 
 **Update User Data**<br>
 Now to update a user's information.  Copy the first user's id.  At the address bar enter the address in *INS Example 3*, replace user _id (including the greater/less than symbols) with the copied first user's id.  Now change 'Get' to 'Put'.  Then in the JSON field enter *INS Object 3* below.<br>* This will update the user's information.
@@ -117,7 +117,7 @@ Now press send.
 
 * Returned within the preview field is our user's update information.<br>
 *INS Output 3:*<br>
-![Insomnia screen 3](./assets/screen3.png)
+![Insomnia screen 3](./assets/images/SNupdateUser.png)
 
 **Add Friend to Friend List**<br>
 Repeat the step for ***View All Users***.  Copy two sepatate user _id's down.  Now in the address bar of insomnia eneter *INS Example 4*.  Replace the user _id with one copied id, and replace the friend _id with the second copied id.  Then in the JSON field enter an empty object as *INS Object 4*.
@@ -138,7 +138,7 @@ Now press send.
 
 * Returned is the *User* with an id inside the FriendList array.<br>
 *INS Output 4:*<br>
-![Insomnia screen 4](./assets/screen4.png)
+![Insomnia screen 4](./assets/images/SNfriendlist.png)
 
 **Create A Thought**<br>
 Again repeat step for ***Get All Users*** and copy the '*first*' user's id (the one updated previously). At the address bar, select 'POST', and enter *INS Example 5* below replacing user _id with the copied id.<br>Then enter *INS Object 5* into the JSON field.<br>
@@ -162,7 +162,7 @@ Now press send.
 
 * Returned is the *USER* in the preview field.  The *thought_id* is inside of our *user's* thoughts array.<br>
 *INS Output 5:*<br>
-![Insomnia screen 5](./assets/screen5.png)
+![Insomnia screen 5](./assets/images/SNcreateThought.png)
 
 **Create Reaction to Thought**<br>
 Again repeat step for ***Get All Users*** and copy the '*second*' user's id. Now copy the '*first*' user's thought id within the array. At the address bar, select 'POST', and enter *INS Example 6* below replacing thought _id with the copied thought id.<br>Then enter *INS Object 6* into the JSON field.<br>
@@ -176,7 +176,7 @@ http://localhost:3001/api/thoughts/<thought _id>/reactions
 ```
 {
 	"username": "testerTWO",
-	"text": "test text FOUR"
+	"text": "reaction test text to Thought"
 }
 ```
 *AGAIN the username is specific.  if not matching error will be thrown*
@@ -185,7 +185,7 @@ Now press send.
 
 * Returned is the *THOUGHT* in the preview field.  The *reaction text* and *username* appear along side a *reactionId*.<br>
 *INS Output 6:*<br>
-![Insomnia screen 5](./assets/screen5.png)
+![Insomnia screen 5](./assets/images/SNreactionADDed.png)
 
 **View All Thoughts**
 At the address bar, select 'GET', and enter *INS Example 7*.<br>
@@ -199,11 +199,17 @@ Now press send.
 
 * Return in the preview field are all *Thoughts* within the database.<br>
 *INS Output 7:*<br>
-![Insomnia screen 5](./assets/screen5.png)
+![Insomnia screen 5](./assets/images/SNallThoughts.png)
 
 *&nbsp;*Usage 'Output' examples ***here*** does NOT reflect ALL 'Fetch requests'.*<br>For more references, view the *walkthrough video* below.
 
-**Walkthrough video [*click here*.](https://drive.google.com/file/d/1MgjOiwTnzAuIYv1BSkaSaoRjxsPr5iXj/view)**
+**Walkthrough video [*click here*.](https://drive.google.com/file/d/1X9oadOTrwH-K8xgSVMiRZSA6key1skPN/view)**<br>
+*Note: Error in video while deleting thought. Must include userId as an object within the JSON field in insomnia.
+```
+{
+	"userID": ""
+}
+```
 
 ### [**Back to top**](#)
 
