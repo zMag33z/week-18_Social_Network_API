@@ -1,5 +1,8 @@
+// Purpose: Controller for User model
+// require User model
 const { User } = require('../models');
 
+// export when called
 module.exports = {
   // retrieve all user in database
   getUsers(req, res){
@@ -7,7 +10,7 @@ module.exports = {
       .then((users) => res.json(users))
       .catch((err) => res.status(500).json(err));
   },
-  // find one User by id
+  // retrieve one User by request id
   getSingleUser(req, res){
     User.findOne({ _id: req.params.userID })
       .then(userRecord => {
@@ -20,13 +23,13 @@ module.exports = {
         res.status(400).json(err);
       });
   },
-  // create a new user
+  // create a new user by request body provided it doesn't already exisit in the database
   createUser(req, res){
     User.create(req.body)
       .then(newUserData => res.json(newUserData))
       .catch((err) => res.status(500).json(err));
   },
-  // update existing 
+  // update existing user by request id
   updateUser(req, res){
     User.findOneAndUpdate(
       { _id: req.params.userID },
@@ -43,7 +46,7 @@ module.exports = {
         res.status(400).json(err);
       });
   },
-  // delete existing
+  // delete existing user by request id
   deleteUser(req, res){
     User.findOneAndDelete({ _id: req.params.userID })
       .then(userRecord => {
@@ -56,7 +59,7 @@ module.exports = {
         res.status(400).json(err);
       });
   },
-  // add to friends list
+  // request of friend's id to add to user's friend list
   addFriend(req, res){
     User.findOneAndUpdate(
       { _id: req.params.userID},
@@ -73,7 +76,7 @@ module.exports = {
       res.status(400).json(err);
     });
   },
-  // remove from friends list
+  // remove from user's friend list this request friend id
   deleteFriend(req, res){
     User.findOneAndUpdate(
       { _id: req.params.userID},

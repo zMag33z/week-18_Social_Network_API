@@ -1,7 +1,11 @@
+// Description: This file contains the schema for the Thought model.
+
+// require mongoose to create a schema and model
 const { Schema, model } = require('mongoose');
+// require reaction schema file
 const ReactionSchema = require('./Reaction');
 
-// Schema to create Post model
+// Schema to create Thought model
 const thoughtSchema = new Schema(
     {
         username: {
@@ -36,5 +40,5 @@ thoughtSchema.virtual('reactionCount').get(function(){
 // Once compiled, send through constructor and create model.
 const Thought = model('Thought', thoughtSchema);
 
-
+// export thought to model index
 module.exports = Thought;

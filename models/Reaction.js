@@ -1,3 +1,5 @@
+// Description: Reaction model for thoughts
+// require mongoose to create a schema and model
 const { Schema, Types } = require('mongoose');
 
 // Reactions to add to thoughts
@@ -30,5 +32,5 @@ const ReactionSchema = new Schema(
     }
   );
 
-  // Schema only
+  // export reaction to thought model
   module.exports = ReactionSchema;

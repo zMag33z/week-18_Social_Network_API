@@ -1,3 +1,6 @@
+// Purpose: Create User model for database
+
+// require mongoose to create a schema and model
 const { Schema, model } = require('mongoose');
 
 // Schema to create User model
@@ -44,4 +47,5 @@ userSchema.virtual("friendCount").get(function () {
 // onced schema compiled send through constructor, create new object.
 const User = model('User', userSchema);
 
+// export user to model index
 module.exports = User;

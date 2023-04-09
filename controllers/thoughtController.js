@@ -1,5 +1,9 @@
+// Purpose: Controller for thoughts
+// require User and Thought models
 const { User, Thought } = require('../models');
 
+
+// export when called
 module.exports = {
   // retrieve all thoughts
   getThoughts(req, res){
